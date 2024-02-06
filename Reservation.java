@@ -1,5 +1,6 @@
 package excesoesPersonalizadas;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -8,6 +9,8 @@ public class Reservation {
 	private Integer roomNumber;
 	private Date checkin;
 	private Date checkOut;
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public Reservation(Integer roomNumber, Date checkin, Date checkOut) {
 		this.roomNumber = roomNumber;
@@ -38,8 +41,21 @@ public class Reservation {
 	
 
 	public void updateDates(Date checkin, Date checkOut) {
-		
+		this.checkin = checkin;
+		this.checkOut = checkOut;
 	}
 	
+	@Override
+	public String toString() {
+		return "Room"
+				+ roomNumber
+				+ ", check-in: "
+				+ sdf.format(checkin)
+				+ ", check-out: "
+				+ sdf.format(checkOut)
+				+ ", "
+				+ duration()
+				+ " nights";
+	}
 	
 }
