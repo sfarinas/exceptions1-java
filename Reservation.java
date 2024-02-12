@@ -40,9 +40,19 @@ public class Reservation {
 	}
 	
 
-	public void updateDates(Date checkin, Date checkOut) {
+	public String updateDates(Date checkin, Date checkOut) {
+		
+		Date now = new Date();
+		if (checkin.before(now) || checkOut.before(now)) {
+			return "Reservation dates for update must be future check-in date";
+		}
+		if (!checkOut.after(checkin)) {
+			return "Check-out date must be after check-in date";
+		}
 		this.checkin = checkin;
 		this.checkOut = checkOut;
+		
+		return null;
 	}
 	
 	@Override
